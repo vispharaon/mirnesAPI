@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="dbmirnesModelStoreContainer" CdmEntityContainer="dbmirnesEntities">
+    <EntitySetMapping Name="Adresa">
+      <EntityTypeMapping TypeName="dbmirnesModel.Adresa">
+        <MappingFragment StoreEntitySet="Adresa">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Grad" ColumnName="Grad" />
+          <ScalarProperty Name="Ulica" ColumnName="Ulica" />
+          <ScalarProperty Name="Broj" ColumnName="Broj" />
+          <ScalarProperty Name="Drzava" ColumnName="Drzava" />
+          <ScalarProperty Name="PostanskiBroj" ColumnName="PostanskiBroj" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Covjek">
+      <EntityTypeMapping TypeName="dbmirnesModel.Covjek">
+        <MappingFragment StoreEntitySet="Covjek">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Ime" ColumnName="Ime" />
+          <ScalarProperty Name="Prezime" ColumnName="Prezime" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Adresa" ColumnName="Adresa" />
+          <ScalarProperty Name="IsImam" ColumnName="IsImam" />
+          <ScalarProperty Name="IsReis" ColumnName="IsReis" />
+          <ScalarProperty Name="IsUpravniOdbor" ColumnName="IsUpravniOdbor" />
+          <ScalarProperty Name="Demat" ColumnName="Demat" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Dzemat">
+      <EntityTypeMapping TypeName="dbmirnesModel.Dzemat">
+        <MappingFragment StoreEntitySet="Dzemat">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+          <ScalarProperty Name="Adresa" ColumnName="Adresa" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Direktor" ColumnName="Direktor" />
+          <ScalarProperty Name="BrojDzamija" ColumnName="BrojDzamija" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Korisnik">
+      <EntityTypeMapping TypeName="dbmirnesModel.Korisnik">
+        <MappingFragment StoreEntitySet="Korisnik">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Log">
+      <EntityTypeMapping TypeName="dbmirnesModel.Log">
+        <MappingFragment StoreEntitySet="Log">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Log1" ColumnName="Log" />
+          <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

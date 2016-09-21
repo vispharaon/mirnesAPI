@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbmirnesModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="dbmirnesModelStoreContainer">
+    <EntitySet Name="Adresa" EntityType="dbmirnesModel.Store.Adresa" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Covjek" EntityType="dbmirnesModel.Store.Covjek" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Dzemat" EntityType="dbmirnesModel.Store.Dzemat" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Korisnik" EntityType="dbmirnesModel.Store.Korisnik" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Log" EntityType="dbmirnesModel.Store.Log" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Covjek_Adresa" Association="dbmirnesModel.Store.FK_Covjek_Adresa">
+      <End Role="Adresa" EntitySet="Adresa" />
+      <End Role="Covjek" EntitySet="Covjek" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Covjek_Dzemat" Association="dbmirnesModel.Store.FK_Covjek_Dzemat">
+      <End Role="Dzemat" EntitySet="Dzemat" />
+      <End Role="Covjek" EntitySet="Covjek" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dzemat_Adresa" Association="dbmirnesModel.Store.FK_Dzemat_Adresa">
+      <End Role="Adresa" EntitySet="Adresa" />
+      <End Role="Dzemat" EntitySet="Dzemat" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dzemat_Covjek" Association="dbmirnesModel.Store.FK_Dzemat_Covjek">
+      <End Role="Covjek" EntitySet="Covjek" />
+      <End Role="Dzemat" EntitySet="Dzemat" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Adresa">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Grad" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Ulica" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Broj" Type="char" MaxLength="10" />
+    <Property Name="Drzava" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="PostanskiBroj" Type="char" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Covjek">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Ime" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Prezime" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Email" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="Adresa" Type="int" Nullable="false" />
+    <Property Name="IsImam" Type="bit" />
+    <Property Name="IsReis" Type="bit" />
+    <Property Name="IsUpravniOdbor" Type="bit" />
+    <Property Name="Demat" Type="int" />
+  </EntityType>
+  <EntityType Name="Dzemat">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Naziv" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Adresa" Type="int" Nullable="false" />
+    <Property Name="Email" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="Direktor" Type="int" Nullable="false" />
+    <Property Name="BrojDzamija" Type="int" />
+  </EntityType>
+  <EntityType Name="Korisnik">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Password" Type="varchar" Nullable="false" MaxLength="150" />
+    <Property Name="Role" Type="varchar" MaxLength="50" />
+    <Property Name="Status" Type="tinyint" />
+  </EntityType>
+  <EntityType Name="Log">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Log" Type="varchar" MaxLength="200" />
+    <Property Name="DateModified" Type="datetime" />
+  </EntityType>
+  <Association Name="FK_Covjek_Adresa">
+    <End Role="Adresa" Type="dbmirnesModel.Store.Adresa" Multiplicity="1" />
+    <End Role="Covjek" Type="dbmirnesModel.Store.Covjek" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Adresa">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Covjek">
+        <PropertyRef Name="Adresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Covjek_Dzemat">
+    <End Role="Dzemat" Type="dbmirnesModel.Store.Dzemat" Multiplicity="0..1" />
+    <End Role="Covjek" Type="dbmirnesModel.Store.Covjek" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dzemat">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Covjek">
+        <PropertyRef Name="Demat" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dzemat_Adresa">
+    <End Role="Adresa" Type="dbmirnesModel.Store.Adresa" Multiplicity="1" />
+    <End Role="Dzemat" Type="dbmirnesModel.Store.Dzemat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Adresa">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Dzemat">
+        <PropertyRef Name="Adresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dzemat_Covjek">
+    <End Role="Covjek" Type="dbmirnesModel.Store.Covjek" Multiplicity="1" />
+    <End Role="Dzemat" Type="dbmirnesModel.Store.Dzemat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Covjek">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Dzemat">
+        <PropertyRef Name="Direktor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
